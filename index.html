@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tondopi Digital — Bold Ideas, Built Digitally</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --green-dark: #052e17;
+  --green-mid: #16a34a;
+  --green-bright: #22c55e;
+  --lime: #a3e635;
+  --ink: #0b1210;
+  --grey: #5b6763;
+  --paper: #f4faf5;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img, svg { display: block; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+section { scroll-margin-top: 76px; }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e7ede8;
+}
+.nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; }
+.nav-logo svg { width: 34px; height: 34px; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 2px;
+  background: var(--green-bright);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--ink);
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 11px 22px;
+  border-radius: 30px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.nav-cta:hover { background: var(--green-mid); transform: translateY(-2px); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--ink); }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 24px 100px;
+  background: var(--paper);
+}
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  z-index: 0;
+}
+.hero-blob.b1 { width: 420px; height: 420px; background: var(--lime); top: -160px; right: -120px; }
+.hero-blob.b2 { width: 320px; height: 320px; background: var(--green-bright); bottom: -140px; left: -100px; }
+.hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; text-align: center; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid #d8ecdc;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--green-mid);
+  margin-bottom: 26px;
+}
+.hero-tag span.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-bright); }
+.hero h1 {
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 22px;
+  letter-spacing: -1px;
+}
+.hero h1 span { color: var(--green-mid); }
+.hero p {
+  font-size: 17px;
+  color: var(--grey);
+  max-width: 520px;
+  margin: 0 auto 34px;
+}
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-primary, .btn-secondary {
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 15px 28px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+.btn-primary { background: var(--ink); color: var(--white); }
+.btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
+.btn-secondary { background: var(--white); color: var(--ink); border: 1px solid #d8ecdc; }
+.btn-secondary:hover { border-color: var(--green-mid); transform: translateY(-2px); }
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+.hero-stats div { background: var(--white); border: 1px solid #d8ecdc; border-radius: 14px; padding: 18px 10px; }
+.hero-stats strong { display: block; font-size: 26px; font-weight: 800; color: var(--green-mid); }
+.hero-stats span { font-size: 12px; color: var(--grey); font-weight: 600; }
+
+/* ---------- SECTION HEADINGS ---------- */
+.section-head { max-width: 560px; margin: 0 auto 50px; text-align: center; }
+.section-tag {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green-mid); margin-bottom: 12px; display: block;
+}
+.section-head h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+.section-head p { color: var(--grey); font-size: 15px; }
+
+/* ---------- SERVICES ---------- */
+.services { padding: 100px 24px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+.service-card {
+  border: 1px solid #e7ede8;
+  border-radius: 18px;
+  padding: 30px 26px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(22,163,74,0.12); border-color: var(--green-bright); }
+.service-icon {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-mid));
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.service-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.service-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: 13.5px; color: var(--grey); }
+
+/* ---------- ABOUT ---------- */
+.about { background: var(--green-dark); color: var(--white); padding: 100px 24px; }
+.about-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+.about-inner .section-tag { color: var(--lime); }
+.about-text h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; margin-bottom: 18px; letter-spacing: -0.5px; }
+.about-text p { color: #cfe8d6; font-size: 15px; margin-bottom: 16px; }
+.about-list { list-style: none; margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+.about-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #e5f5e9; }
+.about-list svg { width: 18px; height: 18px; stroke: var(--lime); flex-shrink: 0; }
+.about-visual {
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(163,230,53,0.18), rgba(34,197,94,0.1));
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+}
+.about-visual svg { width: 46%; height: 46%; }
+
+/* ---------- WORK / PORTFOLIO ---------- */
+.work { padding: 100px 24px; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+.work-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e7ede8;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.work-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.work-thumb {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: #fff; font-size: 15px;
+}
+.work-thumb svg { width: 40px; height: 40px; opacity: 0.85; }
+.work-thumb.wt1 { background: linear-gradient(135deg, #16a34a, #052e17); }
+.work-thumb.wt2 { background: linear-gradient(135deg, #a3e635, #16a34a); }
+.work-thumb.wt3 { background: linear-gradient(135deg, #052e17, #22c55e); }
+.work-thumb.wt4 { background: linear-gradient(135deg, #22c55e, #a3e635); }
+.work-body { padding: 20px 22px 24px; }
+.work-body span { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--green-mid); }
+.work-body h3 { font-size: 16px; font-weight: 700; margin: 8px 0 6px; }
+.work-body p { font-size: 13px; color: var(--grey); }
+
+/* ---------- CONTACT ---------- */
+.contact { padding: 100px 24px 110px; }
+.contact-box {
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+  border-radius: 28px;
+  padding: 64px 40px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.contact-box::before {
+  content: '';
+  position: absolute;
+  width: 260px; height: 260px;
+  background: var(--lime);
+  opacity: 0.25;
+  border-radius: 50%;
+  filter: blur(50px);
+  top: -100px; right: -60px;
+}
+.contact-box h2 { position: relative; font-size: clamp(24px, 4vw, 34px); font-weight: 800; margin-bottom: 14px; }
+.contact-box p { position: relative; color: #dff5e4; margin-bottom: 30px; font-size: 15px; }
+.contact-btns { position: relative; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-light {
+  background: #fff; color: var(--green-dark); font-weight: 700; font-size: 14.5px;
+  padding: 15px 28px; border-radius: 30px; transition: transform 0.25s ease;
+}
+.btn-light:hover { transform: translateY(-2px); }
+.btn-outline-light {
+  border: 1px solid rgba(255,255,255,0.5); color: #fff; font-weight: 700; font-size: 14.5px;
+  padding: 15px 28px; border-radius: 30px; transition: all 0.25s ease;
+}
+.btn-outline-light:hover { border-color: #fff; transform: translateY(-2px); }
+
+/* ---------- FOOTER ---------- */
+footer { background: var(--ink); color: #cfd6d1; padding: 50px 24px 30px; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; color: #fff; }
+.footer-logo svg { width: 28px; height: 28px; }
+.footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 13.5px; }
+.footer-links a:hover { color: var(--lime); }
+.footer-bottom {
+  max-width: 1140px; margin: 30px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12.5px; color: #7b857f; text-align: center;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 860px) {
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { order: -1; max-width: 260px; margin: 0 auto; }
+}
+@media (max-width: 720px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid #e7ede8; padding: 10px 24px 20px;
+  }
+  .nav-links.open a { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+.fab-home {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+.fab-home img { width: 60%; height: 60%; object-fit: contain; }
+.fab-home:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 14px 30px rgba(0,0,0,0.35); }
+.fab-tooltip {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.fab-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 18px;
+  border: 5px solid transparent;
+  border-top-color: #0a0a0a;
+}
+.fab-home:hover .fab-tooltip { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  .fab-home { bottom: 18px; right: 18px; width: 46px; height: 46px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="18" fill="#16a34a"/>
+        <path d="M16 22h32v9H37.5v21h-11V31H16v-9z" fill="#ffffff"/>
+        <circle cx="47" cy="17" r="5" fill="#a3e635"/>
+      </svg>
+      Tondopi Digital
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Start a Project</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="dot"></span> Digital Agency · Est. 2019</div>
+    <h1>Bold ideas, <span>built digitally.</span></h1>
+    <p>Tondopi Digital is a fictional design &amp; development studio — a demo brand showing how Tesseract Cloud Technologies brings a client's identity to life on the web.</p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-primary">See Our Work</a>
+      <a href="#contact" class="btn-secondary">Get a Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>120+</strong><span>Projects Shipped</span></div>
+      <div><strong>98%</strong><span>Client Retention</span></div>
+      <div><strong>6</strong><span>Years Running</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">What We Do</span>
+      <h2>Services built around growth</h2>
+      <p>From first sketch to final launch, we handle every layer of your digital presence.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+        <h3>Web Design</h3>
+        <p>Clean, conversion-focused websites tailored to your brand and your customers.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18 9 9 0 0 1 0-18z"/><path d="M3 12h18"/></svg></div>
+        <h3>Branding</h3>
+        <p>Logos, colour systems, and visual identity that make your business memorable.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>SEO &amp; Growth</h3>
+        <p>Technical SEO and content strategy that gets your site found and ranked.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
+        <h3>App Development</h3>
+        <p>Mobile and web apps built to be fast, reliable, and easy to use daily.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap about-inner">
+    <div class="about-text">
+      <span class="section-tag">About Tondopi</span>
+      <h2>A small studio with big-agency thinking</h2>
+      <p>We're a tight-knit team who believe good design should be simple to use and impossible to ignore. Every project starts with a conversation, not a template.</p>
+      <ul class="about-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Dedicated project lead on every build</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Transparent timelines, no surprise costs</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ongoing support after launch</li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="18" fill="#a3e635" fill-opacity="0.15"/>
+        <path d="M16 22h32v9H37.5v21h-11V31H16v-9z" fill="#a3e635"/>
+        <circle cx="47" cy="17" r="5" fill="#a3e635"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">Selected Work</span>
+      <h2>A few projects we're proud of</h2>
+      <p>A snapshot of fictional projects created to demonstrate range across industries.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-thumb wt1"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8 12 14.7 8.7 11.4 3 17"/></svg></div>
+        <div class="work-body"><span>Fintech</span><h3>Pesa Track</h3><p>Personal finance dashboard concept with clean data visualisation.</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb wt2"><svg viewBox="0 0 24 24" fill="none" stroke="#052e17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 15l9 6 9-6"/></svg></div>
+        <div class="work-body"><span>Retail</span><h3>Highlands Market</h3><p>E-commerce storefront concept for a local goods marketplace.</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb wt3"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+        <div class="work-body"><span>Hospitality</span><h3>Kokopo Stay</h3><p>Booking-style landing page concept for a boutique guesthouse.</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb wt4"><svg viewBox="0 0 24 24" fill="none" stroke="#052e17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+        <div class="work-body"><span>Education</span><h3>Learnfast PNG</h3><p>Course platform concept with a friendly, approachable visual style.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact-box">
+    <h2>Let's build something great</h2>
+    <p>This is a demo contact section — on a real client site this would connect to a working form or booking flow.</p>
+    <div class="contact-btns">
+      <a href="mailto:hello@tondopidigital.com" class="btn-light">Email Us</a>
+      <a href="#services" class="btn-outline-light">See Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-logo">
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="18" fill="#16a34a"/>
+        <path d="M16 22h32v9H37.5v21h-11V31H16v-9z" fill="#ffffff"/>
+        <circle cx="47" cy="17" r="5" fill="#a3e635"/>
+      </svg>
+      Tondopi Digital
+    </div>
+    <ul class="footer-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    A fictional brand created to demonstrate Tesseract Cloud Technologies' web design work. &copy; 2026 Tondopi Digital.
+  </div>
+</footer>
+<a href="https://demo.tesseract-pg.com/" class="fab-home" aria-label="Back to Showcase">
+  <img src="tctd_icon.png" alt="Back to Showcase">
+  <span class="fab-tooltip">Back to Showcase</span>
+</a>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
